@@ -1,0 +1,13 @@
+apiVersion: networking.istio.io/v1alpha3
+kind: VirtualService
+metadata:
+  name: hello-world-helm
+spec:
+  hosts:
+    - hello-world-helm.dev.svc.cluster.local
+  http:
+    - route:
+        - destination:
+            host: hello-world-helm
+            port:
+              number: 8080
