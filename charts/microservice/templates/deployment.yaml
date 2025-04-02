@@ -39,12 +39,14 @@ spec:
               protocol: TCP
           livenessProbe:
             httpGet:
-              path: /
+              path: "/{{ .Values.microservice.contextPath }}/actuator/health/liveness"
               port: http
+            initialDelaySeconds: 25
           readinessProbe:
             httpGet:
-              path: /
+              path: "/{{ .Values.microservice.contextPath }}/actuator/health/readiness"
               port: http
+            initalDelaySeconds: 25
           resources:
             {{- toYaml .Values.resources | nindent 12 }}
       {{- with .Values.nodeSelector }}
